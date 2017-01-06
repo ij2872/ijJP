@@ -1,9 +1,12 @@
+
+
 /**
  * Created by Ivan on 1/3/2017.
  */
 public class main {
     public static void main(String[] args){
-        DataReader files = new DataReader();
 
+        DataReader files = new DataReader("/data/rndText.txt");
+        System.out.println(files.getString());
     }
 }

@@ -1,37 +1,68 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * Created by Ivan on 1/3/2017.
  * Load Files and print content.
  *
  */
 public class DataReader {
+
     //Global Vars
     private boolean isFileDirAvailable = false;
     private String FileDir;
+    private String parentDir = "./filePracticeModule";
 
+    private String TEXT;
+    private List<String> TEXT_LIST;
 
     //Initialize Data Reader
     public DataReader(){
-        System.out.println("Starting up Data Reader");
+        System.out.println("Starting up Data Reader...");
+        System.out.println("Use .setDir() to import text");
 
     }
 
-    // - Import files when initializing DataReader
+    // Import files when initializing DataReader
     public DataReader(String fileDir){
+        System.out.println("Starting up Data Reader...");
+        FileDir = parentDir + fileDir;
 
+        try {
+            TEXT = new String(Files.readAllBytes(Paths.get(FileDir)));
+            TEXT_LIST = Arrays.asList(TEXT.split("\\PL+"));
+
+            System.out.println("Data Loaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
 
     //Methods
 
     public void setDir(String fileDir){
-        FileDir = fileDir;
-        isFileDirAvailable = true;
+
+        try {
+            FileDir = parentDir + fileDir;
+            isFileDirAvailable = true;
+
+            TEXT = new String(Files.readAllBytes(Paths.get(parentDir + fileDir)));
+            TEXT_LIST = Arrays.asList(TEXT.split("\\PL+"));
+
+            System.out.println("Data Loaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Return Directory of File as String
     // Else return error
-    public String getDir(){
+     public String getDir(){
         if (FileDir != null) {
             return FileDir;
         } else {
@@ -39,14 +70,14 @@ public class DataReader {
         }
     }
 
+    // TODO Fix Streams
     // get content of file
-    // TODO read files
     public String getString(){
-        String content = "";
-
-        return content;
+        return TEXT;
     }
-
+//    public int getStringCount(String wordToSearch){
+//        int count = wordToSearch.stream();
+//    }
 
 
 
