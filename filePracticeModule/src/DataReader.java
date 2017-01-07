@@ -70,15 +70,34 @@ public class DataReader {
         }
     }
 
-    // TODO Fix Streams
     // get content of file
     public String getString(){
         return TEXT;
     }
-//    public int getStringCount(String wordToSearch){
-//        int count = wordToSearch.stream();
-//    }
 
+    public List<String> getWords(){
+        return TEXT_LIST;
+    }
+
+    public void printWords(){
+        Stream.of(TEXT_LIST)
+                .forEach(System.out::println);
+    }
+
+    public void printLine(){
+        Stream.of(TEXT).forEach(System.out::println);
+    }
+
+    public long getWordCount(){
+        return TEXT_LIST.stream().count();
+    }
+
+    public void getWordCount(String wordToSearch){
+        long wordCount = TEXT_LIST.stream()
+                .filter(w -> w.equals(wordToSearch))
+                .count();
+        System.out.printf("There are %s, instances of '%s'", wordCount, wordToSearch);
+    }
 
 
 }
