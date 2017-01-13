@@ -84,7 +84,7 @@ public class DataReader {
                 .forEach(System.out::println);
     }
 
-    public void printLine(){
+    public void printLines(){
         Stream.of(TEXT).forEach(System.out::println);
     }
 
