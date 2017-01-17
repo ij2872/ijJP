@@ -42,6 +42,7 @@ public class DataReader {
         }
     }
 
+    //get file, split with dim., get vars
 
     //Methods
 
@@ -99,5 +100,7 @@ public class DataReader {
         System.out.printf("There are %s, instances of '%s'", wordCount, wordToSearch);
     }
 
+    public void getMostUsedWord(){
 
+    }
 }
