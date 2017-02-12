@@ -10,20 +10,17 @@ public class DataWrite {
     private String fileName;
     private boolean isDirEmpty;
 
-    public DataWrite(){
+    public DataWrite() {
         this.fileName = null;
         this.isDirEmpty = true;
     }
 
     public DataWrite(String fileName, List<Stocks> data) {
         this.fileName = fileName;
-
-
-        write(data);
     }
 
     public void writeStock(List<Stocks> data) {
-        if(!isDirEmpty){
+        if (!isDirEmpty) {
             try {
                 PrintWriter writer = new PrintWriter(fileName);
 
@@ -39,6 +36,8 @@ public class DataWrite {
                 this.fileName = "stockTest.dat";
                 this.isDirEmpty = false;
 
+                //Create object writer
+
                 PrintWriter writer = new PrintWriter(fileName);
 
                 data.stream()
@@ -50,6 +49,33 @@ public class DataWrite {
             }
         }
 
+
+    }
+
+    public void writeStock(String data) {
+        if (!isDirEmpty) {
+            try {
+                PrintWriter writer = new PrintWriter(fileName);
+                writer.write(data);
+
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                this.fileName = "stockTest.dat";
+                this.isDirEmpty = false;
+
+                //Create object writer
+
+                PrintWriter writer = new PrintWriter(fileName);
+                writer.write(data);
+                writer.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
